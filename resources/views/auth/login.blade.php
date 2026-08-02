@@ -75,8 +75,6 @@
           activeSlide: 0,
           slides: [
             '{{ asset('img/Sd.jpg') }}',
-            '{{ asset('img/sd_slide1.png') }}',
-            '{{ asset('img/sd_slide2.png') }}',
             '{{ asset('img/mpls2026.jpg') }}',
             '{{ asset('img/eventbuddhi.jpg') }}',
             '{{ asset('img/imnusisasi.jpg') }}',
