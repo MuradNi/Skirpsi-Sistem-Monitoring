@@ -49,6 +49,41 @@ class RaportController extends Controller
         ));
     }
 
+    public function cetak($siswaId)
+    {
+        $user = Auth::user();
+
+        // Cek hak akses role
+        if ($user->role === 'siswa') {
+            $matchingSiswa = Siswa::where('user_id', $user->id)->first();
+            if (!$matchingSiswa || $matchingSiswa->id !== (int) $siswaId) {
+                abort(403, 'Akses ditolak. Anda hanya boleh melihat raport Anda sendiri.');
+            }
+        } elseif ($user->role === 'orang_tua') {
+            $matchingSiswa = Siswa::where('parent_user_id', $user->id)->first();
+            if (!$matchingSiswa || $matchingSiswa->id !== (int) $siswaId) {
+                abort(403, 'Akses ditolak. Anda hanya boleh melihat raport anak Anda sendiri.');
+            }
+        }
+
+        $siswa = Siswa::with(['kelas.waliKelas'])->findOrFail($siswaId);
+
+        $raports = Raport::where('siswa_id', $siswa->id)
+            ->where('semester', 2)
+            ->with('mataPelajaran')
+            ->get();
+
+        $totalSubjects = $raports->count();
+        $avgScore      = $totalSubjects > 0 ? round($raports->avg('nilai_akhir'), 1) : 0;
+        $tuntasCount   = $raports->where('tuntas', true)->count();
+        $passingRate   = $totalSubjects > 0 ? round(($tuntasCount / $totalSubjects) * 100) : 0;
+        $gradeAkhir    = Raport::hitungGrade($avgScore);
+
+        return view('dashboard.raport.cetak', compact(
+            'siswa', 'raports', 'avgScore', 'gradeAkhir', 'passingRate'
+        ));
+    }
+
     // API JSON untuk grafik perkembangan nilai siswa
     public function apiRaport(Request $request, $siswaId)
     {
