@@ -43,6 +43,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
 
     // Raport
     Route::get('raport/{siswa}', [RaportController::class, 'show'])->name('raport.show');
+    Route::get('raport/{siswa}/cetak', [RaportController::class, 'cetak'])->name('raport.cetak');
 
     // API Data Chart
     Route::prefix('api')->name('api.')->group(function () {

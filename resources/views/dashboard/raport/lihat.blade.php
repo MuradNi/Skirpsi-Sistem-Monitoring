@@ -161,9 +161,10 @@
     </div>
 
     <div class="no-print border-t border-gray-100 pt-6 flex items-center justify-end">
-      <button onclick="window.print()" class="px-6 py-3 bg-gray-900 hover:bg-primary text-white text-xs font-bold rounded-xl transition shadow-lg shadow-gray-900/20 flex items-center gap-1.5 hover:translate-y-[-1px]">
+      <a href="{{ route('dashboard.raport.cetak', $siswa->id) }}" target="_blank"
+         class="px-6 py-3 bg-gray-900 hover:bg-primary text-white text-xs font-bold rounded-xl transition shadow-lg shadow-gray-900/20 flex items-center gap-1.5 hover:translate-y-[-1px]">
         <i data-lucide="printer" class="w-4 h-4"></i> Cetak Dokumen A4 (PDF)
-      </button>
+      </a>
     </div>
 
   </div>
@@ -186,14 +187,14 @@
           }
 
           chartInst = new Chart(ctx, {
-            type: 'bar', // use blocky/bar chart as requested
+            type: 'bar', // ChartJS Tipe Bar
             data: {
-              labels: data.labels, // ['UH Sebelum UTS', 'UTS', 'UH Sebelum UAS', 'UAS']
+              labels: data.labels, // Label Data ['UH Sebelum UTS', 'UTS', 'UH Sebelum UAS', 'UAS']
               datasets: [
                 {
                   label: 'Nilai Siswa',
                   data: data.siswa_grades,
-                  backgroundColor: '#f4b942', // Yellow
+                  backgroundColor: '#f4b942', 
                   borderColor: '#ffffff',
                   borderWidth: 2,
                   borderRadius: 6
@@ -201,7 +202,7 @@
                 {
                   label: 'Rata-rata Kelas',
                   data: data.class_averages,
-                  backgroundColor: '#8ec5ff', // Sky blue
+                  backgroundColor: '#8ec5ff', 
                   borderColor: '#ffffff',
                   borderWidth: 2,
                   borderRadius: 6
@@ -209,7 +210,7 @@
                 {
                   label: 'Standar KKM',
                   data: data.kkm,
-                  backgroundColor: '#bdbdbd', // Grey
+                  backgroundColor: '#bdbdbd', 
                   borderColor: '#ffffff',
                   borderWidth: 2,
                   borderRadius: 6
