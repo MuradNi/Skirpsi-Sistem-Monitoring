@@ -69,7 +69,7 @@
   <section id="profil" class="py-20 bg-gray-50 border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
       <div>
-        <img src="http://127.0.0.1:8000/img/Sd.jpg" alt="Siswa SD Buddhi" class="rounded-3xl shadow-xl w-full h-[400px] object-cover hover-scale">
+        <img src="{{ asset('img/Sd.jpg') }}" alt="Siswa SD Buddhi" class="rounded-3xl shadow-xl w-full h-[400px] object-cover hover-scale">
       </div>
       <div class="space-y-6">
         <span class="text-xs font-extrabold text-primary uppercase tracking-widest block">Tentang Kami</span>
