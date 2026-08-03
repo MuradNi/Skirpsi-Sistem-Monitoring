@@ -127,9 +127,14 @@
             <span>Raport Anak</span>
           </a>
         @endif
-      @elseif (in_array(auth()->user()->role, ['admin', 'wali_kelas']))
+      @elseif (in_array(auth()->user()->role, ['admin', 'guru']))
         @php
-          $firstSiswa = \App\Models\Siswa::first();
+          if (auth()->user()->role === 'guru') {
+            $guruKelas = \App\Models\Kelas::where('wali_kelas_id', auth()->id())->first();
+            $firstSiswa = $guruKelas ? \App\Models\Siswa::where('kelas_id', $guruKelas->id)->first() : \App\Models\Siswa::first();
+          } else {
+            $firstSiswa = \App\Models\Siswa::first();
+          }
         @endphp
         @if ($firstSiswa)
           <a href="{{ route('dashboard.raport.show', $firstSiswa->id) }}" 
@@ -145,7 +150,6 @@
 
     <div class="p-4 border-t border-gray-800 bg-gray-950/60 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="{{ auth()->user()->avatar ?? 'https://api.dicebear.com/7.x/adventurer/svg?seed=user' }}" alt="Avatar" class="w-9 h-9 rounded-full object-cover border border-gray-700 bg-gray-800">
         <div class="min-w-0">
           <p class="text-xs font-extrabold text-white truncate w-32">{{ auth()->user()->nama }}</p>
           <p class="text-[10px] text-gray-500 font-bold uppercase capitalize">{{ auth()->user()->role }}</p>
@@ -176,7 +180,6 @@
         </button>
         
         <div class="flex items-center gap-2">
-          <img src="{{ auth()->user()->avatar }}" alt="Avatar" class="w-9 h-9 rounded-full object-cover">
           <span class="text-xs font-bold text-gray-800 hidden md:inline-block">{{ auth()->user()->nama }}</span>
         </div>
       </div>

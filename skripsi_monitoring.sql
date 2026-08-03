@@ -361,7 +361,7 @@ INSERT INTO `users` (`id`, `nama`, `email`, `no_wa`, `password`, `role`, `avatar
 (1, 'Budi Santoso, S.Kom', 'admin@buddhi.sch.id', NULL, '$2y$12$T5gUS05G0yigLar64EFs9uenSsX4YtcCaftuU8zfnjnpi87wvH5iy', 'admin', 'https://api.dicebear.com/7.x/adventurer/svg?seed=admin', '2026-06-07 09:36:25', '2026-06-07 09:36:25'),
 (2, 'Siti Rahma, S.Pd', 'guru1@buddhi.sch.id', NULL, '$2y$12$z0pnO2uN0q3.k6TWnQFIguPscatw18XgSXHSHsLV5qBlE5r2ig7.i', 'guru', 'https://api.dicebear.com/7.x/adventurer/svg?seed=teacher1', '2026-06-07 09:36:25', '2026-06-07 09:36:25'),
 (3, 'Hendra Wijaya, S.Pd', 'guru2@buddhi.sch.id', NULL, '$2y$12$OGlGgBQL03s0cgCCn.sY8uDqI9qtHPa0ADwO18/AIUkqqoQudEwQW', 'guru', 'https://api.dicebear.com/7.x/adventurer/svg?seed=teacher2', '2026-06-07 09:36:26', '2026-06-07 09:36:26'),
-(4, 'Dewi Lestari, M.Pd', 'wali6a@buddhi.sch.id', NULL, '$2y$12$7r4bH2ofAu36GcWXR2Xcr.uRh4BcDszv9uUIA4zMrCoMe/uzjQ75a', 'wali_kelas', 'https://api.dicebear.com/7.x/adventurer/svg?seed=wali', '2026-06-07 09:36:26', '2026-06-07 09:36:26'),
+(4, 'Dewi Lestari, M.Pd', 'wali6a@buddhi.sch.id', NULL, '$2y$12$7r4bH2ofAu36GcWXR2Xcr.uRh4BcDszv9uUIA4zMrCoMe/uzjQ75a', 'guru', 'https://api.dicebear.com/7.x/adventurer/svg?seed=wali', '2026-06-07 09:36:26', '2026-06-07 09:36:26'),
 (5, 'Rudi Hermawan', 'orangtua@buddhi.sch.id', '081234567890', '$2y$12$t0YnhsVp23AVVCBw1T/FQOQaMme9KbtwME4g7IeN1ps5ISIc4CyVy', 'orang_tua', 'https://api.dicebear.com/7.x/adventurer/svg?seed=parent', '2026-06-07 09:36:26', '2026-06-07 09:36:26');
 
 --

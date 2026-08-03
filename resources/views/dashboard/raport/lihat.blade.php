@@ -6,7 +6,7 @@
 @section('dashboard_content')
 <div class="space-y-8">
 
-  @if (in_array(auth()->user()->role, ['admin', 'wali_kelas']))
+  @if (in_array(auth()->user()->role, ['admin', 'guru']))
     <div class="no-print p-6 bg-white border border-gray-100 rounded-3xl flex flex-wrap gap-4 items-center justify-between shadow-sm">
       <div class="flex items-center gap-3">
         <span class="text-xs font-bold text-gray-400 uppercase">Pilih Siswa:</span>

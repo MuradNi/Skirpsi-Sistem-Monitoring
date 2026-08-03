@@ -13,10 +13,19 @@ class NilaiController extends Controller
 {
     public function index(Request $request)
     {
-        $kelasId = $request->input('kelas_id', 1);
-        $mapelId = $request->input('mata_pelajaran_id', 1);
+        $user = auth()->user();
 
-        $kelasList = Kelas::all();
+        // Jika guru, otomatis batasi hanya ke kelas milik guru tersebut
+        if ($user->role === 'guru') {
+            $guruKelas = Kelas::where('wali_kelas_id', $user->id)->first();
+            $kelasId = $guruKelas ? $guruKelas->id : 1;
+            $kelasList = $guruKelas ? collect([$guruKelas]) : Kelas::all();
+        } else {
+            $kelasId = $request->input('kelas_id', 1);
+            $kelasList = Kelas::all();
+        }
+
+        $mapelId = $request->input('mata_pelajaran_id', 1);
         $mapelList = MataPelajaran::all();
 
         $siswaList = Siswa::where('kelas_id', $kelasId)->get();

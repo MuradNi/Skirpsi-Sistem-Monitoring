@@ -188,8 +188,8 @@
             <p class="font-extrabold text-primary uppercase tracking-wide">💡 Demo Login (Password: password):</p>
             <ul class="space-y-1 font-mono">
               <li>• Admin: <span class="text-gray-900 font-semibold">admin@buddhi.sch.id</span></li>
-              <li>• Guru: <span class="text-gray-900 font-semibold">guru1@buddhi.sch.id</span></li>
-              <li>• Wali Kelas: <span class="text-gray-900 font-semibold">wali6a@buddhi.sch.id</span></li>
+              <li>• Guru 5A: <span class="text-gray-900 font-semibold">guru1@buddhi.sch.id</span></li>
+              <li>• Guru 6A: <span class="text-gray-900 font-semibold">wali6a@buddhi.sch.id</span></li>
               <li>• Orang Tua / Siswa: <span class="text-gray-900 font-semibold">orangtua@buddhi.sch.id</span></li>
             </ul>
           </div>

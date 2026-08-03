@@ -25,6 +25,14 @@ class RaportController extends Controller
             if (!$matchingSiswa || $matchingSiswa->id !== (int) $siswaId) {
                 abort(403, 'Akses ditolak. Anda hanya boleh melihat raport anak Anda sendiri.');
             }
+        } elseif ($user->role === 'guru') {
+            $guruKelas = \App\Models\Kelas::where('wali_kelas_id', $user->id)->first();
+            if ($guruKelas) {
+                $siswaTarget = Siswa::find($siswaId);
+                if (!$siswaTarget || $siswaTarget->kelas_id !== $guruKelas->id) {
+                    abort(403, 'Akses ditolak. Anda hanya dapat mengelola raport siswa di kelas Anda.');
+                }
+            }
         }
 
         $siswa = Siswa::with(['kelas.waliKelas', 'parent'])->findOrFail($siswaId);
@@ -42,7 +50,12 @@ class RaportController extends Controller
 
         $gradeAkhir = Raport::hitungGrade($avgScore);
 
-        $siswaList = Siswa::all();
+        if ($user->role === 'guru') {
+            $guruKelas = \App\Models\Kelas::where('wali_kelas_id', $user->id)->first();
+            $siswaList = $guruKelas ? Siswa::where('kelas_id', $guruKelas->id)->get() : Siswa::all();
+        } else {
+            $siswaList = Siswa::all();
+        }
 
         return view('dashboard.raport.lihat', compact(
             'siswa', 'raports', 'avgScore', 'gradeAkhir', 'passingRate', 'siswaList'
@@ -63,6 +76,14 @@ class RaportController extends Controller
             $matchingSiswa = Siswa::where('parent_user_id', $user->id)->first();
             if (!$matchingSiswa || $matchingSiswa->id !== (int) $siswaId) {
                 abort(403, 'Akses ditolak. Anda hanya boleh melihat raport anak Anda sendiri.');
+            }
+        } elseif ($user->role === 'guru') {
+            $guruKelas = \App\Models\Kelas::where('wali_kelas_id', $user->id)->first();
+            if ($guruKelas) {
+                $siswaTarget = Siswa::find($siswaId);
+                if (!$siswaTarget || $siswaTarget->kelas_id !== $guruKelas->id) {
+                    abort(403, 'Akses ditolak. Anda hanya dapat mencetak raport siswa di kelas Anda.');
+                }
             }
         }
 
